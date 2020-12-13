@@ -10,7 +10,7 @@ const CollegeSchema = Schema({
     state: { type: String },
     country: { type: String },
     courses: [ {type: String} ],
-    student_ids: [{type: Schema.Types.ObjectId}]
+    student_ids: [{type: Schema.Types.ObjectId, ref: "Student"}]
 });
 
 module.exports = mongoose.model("College", CollegeSchema);

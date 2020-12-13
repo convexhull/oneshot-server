@@ -1,6 +1,29 @@
 const services = require('./services');
 
 
+const getPopulatedCollegeDetailsById = async (req, res) => {
+    let responseData = {
+        success: true,
+        error: false,
+        message: ``,
+        data: null
+    };
+    try {
+        let college = await services.getPopulatedCollegeDetailsById(req.query);
+        responseData.data = college;
+        responseData.message = "College fetched successfully";
+        res.send(responseData);
+    } catch(e) {
+        responseData = {
+            success: false,
+            error: true,
+            message: "Some error occurred",
+        };
+        res.status(500).send(responseData);
+    }
+}
+
+
 const getAllColleges = async (req, res) => {
     let responseData = {
         success: true,
@@ -69,9 +92,58 @@ const calculateStatewiseStats = async (req, res) => {
     }
 }
 
+const calculateCoursewiseStats = async (req, res) => {
+    let responseData = {
+        success: true,
+        error: false,
+        message: ``,
+        data: null
+    };
+    try {
+        let results = await services.calculateCoursewiseStats();
+        responseData.data = results;
+        responseData.message = "Results fetched successfully";
+        res.send(responseData);
+    } catch(e) {
+        responseData = {
+            success: false,
+            error: true,
+            message: "Some error occurred",
+        };
+        res.status(500).send(responseData);
+    }
+}
+
+
+const getSimilarColleges = async (req, res) => {
+    let responseData = {
+        success: true,
+        error: false,
+        message: ``,
+        data: null
+    };
+    try {
+        let results = await services.getSimilarColleges(req.query);
+        responseData.data = results;
+        responseData.message = "Results fetched successfully";
+        res.send(responseData);
+    } catch(e) {
+        console.log(e);
+        responseData = {
+            success: false,
+            error: true,
+            message: "Some error occurred",
+        };
+        res.status(500).send(responseData);
+    }
+}
+
 
 module.exports = {
     getAllColleges,
     filterColleges,
-    calculateStatewiseStats
+    calculateStatewiseStats,
+    calculateCoursewiseStats,
+    getPopulatedCollegeDetailsById,
+    getSimilarColleges
 }

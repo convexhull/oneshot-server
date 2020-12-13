@@ -61,7 +61,7 @@ const stockStateNames = [
 
 const randomCoursesGenerator = () => {
     const stockCourses = [
-        "computer science", "IT", "electrical", "electronics", "civil", "mechanical", "biotech", "chemical", "metallurgical", "marine", "aerospace"
+        "Computer Science", "IT", "Electrical", "Electronics", "Civil", "Mechanical", "Biotech", "Chemical", "Metallurgical", "Marine", "Aerospace"
     ]
 
     const selectedCourses = [];
@@ -105,16 +105,16 @@ const randomStudentNameGenerator = () => {
 
 const randomSkillsGenerator = () => {
     const stockSkills = [
-        "c++",
-        "python",
-        "java",
-        "javascript",
-        "algorithms",
-        "data structures",
-        "react.js",
-        "node.js",
-        "flutter",
-        "rabbit-mq"
+        "C++",
+        "Python",
+        "Java",
+        "Javascript",
+        "Algorithms",
+        "Data Structures",
+        "React.js",
+        "Node.js",
+        "Flutter",
+        "RabbitMQ"
     ]
     const selectedSkills = [];
 
@@ -171,7 +171,8 @@ const dataIndexer = async () => {
         await studentObj.save();
     }
     const collegeObj = new College(collegeInfo);
-    await collegeObj.save();
+    let savedCollege = await collegeObj.save();
+    console.log("Indexed college: ", savedCollege);
 }
 
 
